@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YuFei.Group</title>
+  <script>
+    (function (args) {
+      var wait = [],
+        isReady = false,
+        d = document,
+        w = window,
+        isMobile = args.isMobile
+
+      function handler(e) {
+        if (isReady) {
+          return
+        }
+
+        if (e.type === 'onreadystatechange' && d.readyState !== 'complete') {
+          return
+        }
+
+        for (var i = 0; i < wait.length; i++) {
+          wait[i].call(d)
+        }
+        isReady = true
+        wait = null
+      }
+
+      if (d.addEventListener) {
+        d.addEventListener('DOMContentLoaded', handler, false)
+        d.addEventListener('readystatechange', handler, false) //IE9+
+        w.addEventListener('load', handler, false)
+      } else if (d.attachEvent) {
+        d.attachEvent('onreadystatechange', handler)
+        w.attachEvent('onload', handler)
+      }
+
+      function ready(fn) {
+        if (isReady) {
+          fn.call(document)
+        } else {
+          wait.push(fn)
+        }
+      }
+
+      function rem() {
+        // 基准字号
+        if (args.fontSize) {
+          d.body.style.fontSize = args.fontSize
+        }
+
+        var docE = d.documentElement
+        var maxWidth = args.maxWidth // 最大宽
+        var minH = docE.style.minHeight
+        docE.style.minHeight = '80vh'
+        var BCR = docE.getBoundingClientRect()
+        var innerWidth = BCR.width || window.innerWidth
+        var innerHeight = BCR.height || window.innerHeight
+        var bW = isMobile
+          ? innerWidth
+          : innerWidth > 0 && innerWidth < innerHeight
+            ? Math.min(innerWidth, maxWidth)
+            : Math.min(innerWidth, maxWidth)
+        var width = Math.min(bW, maxWidth)
+        docE.style.minHeight = minH
+        docE.style.fontSize = width / 7.5 + 'px'
+      }
+
+      if (args.maxWidth > 320) {
+        w.addEventListener('resize', rem)
+        try {
+          rem()
+        } catch (e) { }
+        ready(rem)
+      }
+
+      d.ready = ready
+    })({
+      maxWidth: +'560',
+      fontSize: '14px'
+    })
+  </script>
+  <style>
+    html,
+    body {
+      height: 100%;
+      padding: 0;
+      margin: 0;
+    }
+
+    body {
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-image: linear-gradient(to top, #00c6fb 0%, #005bea 100%);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+
+    h1,
+    h2 {
+      line-height: 1.5;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+
+    h1 a,
+    h2 a {
+      text-decoration: none;
+    }
+
+    h1 {
+      font-size: 1rem;
+    }
+
+    h2 {
+      font-size: 0.6rem;
+    }
+
+    .dn {
+      color: #ebdf07;
+    }
+
+    .tld {
+      color: #f8b409;
+    }
+
+    a,
+    a:visited {
+      color: #07eb12;
+      text-underline-offset: .16rem;
+    }
+
+    .mod {
+      width: 7.5rem;
+      padding: .2rem 0;
+      text-align: left;
+      font-size: .5rem;
+    }
+    .mod + .mod {
+      border-top: 1px dotted #6e45e2;
+    }
+
+    .mod p {
+      margin: 0;
+      padding: .1rem .2rem;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="mod">
+    <h1><a href="https://cnlei.com/d/go?p=ali&d=yufei.group"><strong class="dn">YuFei</strong>.<strong class="tld">Group</strong></a></h1>
+    <h2><a href="https://cnlei.com/d/go?p=ali&d=yufei.group">宇飞集团、豫飞集团</a></h2>
+  </div>
+  <div class="mod">
+    <p><strong class="tld">.group</strong>
+      是<strong class="dn">集团企业</strong>专属的通用顶级域名，打造集团品牌，提高用户粘度和可信度。</p>
+  </div>
+  <div class="mod">
+    <p>trade: <a href="https://cnlei.com/d/go?p=ali&d=yufei.group">AliYun</a></p>
+    <p>email: <a href="mailto:sinobrands@qq.com">sinobrands@qq.com</a></p>
+  </div>
+  <script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
+  <script>LA.init({id:"Jvrp6sjHRYhkjxmA",ck:"Jvrp6sjHRYhkjxmA"})</script>
+</body>
+
+</html>
